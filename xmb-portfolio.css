@@ -3678,3 +3678,128 @@ body::before {
         margin-bottom: 12px !important;
     }
 }
+
+/* Desktop shortcuts and taskbar controls. */
+.language-switcher {
+    display: none !important;
+}
+
+.cv-tab {
+    display: none !important;
+}
+
+.desktop-icons {
+    position: fixed;
+    top: 108px;
+    left: 18px;
+    z-index: 20;
+    display: grid;
+    gap: 18px;
+}
+
+.desktop-icons .desktop-icon {
+    position: static;
+}
+
+.desktop-icon {
+    text-decoration: none;
+}
+
+.desktop-icon:hover .desktop-icon-art,
+.desktop-icon:focus-visible .desktop-icon-art {
+    outline: 1px dotted #fff;
+    outline-offset: 2px;
+    background: #dcecff;
+}
+
+.folder-art {
+    position: relative;
+    border-color: #9b7412;
+    background: linear-gradient(#ffe98b, #d89d1a) !important;
+}
+
+.folder-art::before {
+    position: absolute;
+    top: -4px;
+    left: 3px;
+    width: 17px;
+    height: 6px;
+    border: 1px solid #9b7412;
+    border-bottom: 0;
+    border-radius: 3px 3px 0 0;
+    background: #f4c94f;
+    content: "";
+}
+
+.document-art {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.taskbar-contact {
+    display: inline-flex;
+    height: 25px;
+    align-items: center;
+    margin-left: 6px;
+    padding: 0 10px;
+    border: 1px solid #1748b8;
+    border-radius: 3px;
+    color: #fff;
+    background: rgba(0, 45, 150, .25);
+    font-size: 11px;
+    text-decoration: none;
+}
+
+.taskbar-contact:hover {
+    background: rgba(255, 255, 255, .2);
+}
+
+.taskbar-languages {
+    display: flex;
+    gap: 2px;
+    margin-left: 6px;
+}
+
+.taskbar-languages .lang-btn {
+    min-width: 28px;
+    height: 23px;
+    padding: 0 5px !important;
+    border-color: #1748b8 !important;
+    color: #fff !important;
+    background: rgba(0, 45, 150, .25) !important;
+    font-size: 10px;
+}
+
+.taskbar-languages .lang-btn.active,
+.taskbar-languages .lang-btn:hover {
+    border-color: #fff !important;
+    color: #17365e !important;
+    background: #fff !important;
+}
+
+@media (max-width: 768px) {
+    .desktop-icons {
+        top: 98px;
+        left: 12px;
+        grid-template-columns: repeat(3, 68px);
+        gap: 8px;
+    }
+
+    .desktop-icons .desktop-icon-art {
+        width: 34px;
+        height: 34px;
+    }
+
+    .desktop-icon-recycle {
+        top: 98px;
+        right: 12px;
+    }
+
+    .taskbar-contact {
+        display: none;
+    }
+
+    .taskbar-languages {
+        margin-left: 4px;
+    }
+}
