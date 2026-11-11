@@ -105,9 +105,28 @@ function openEntry(id, name) {
 }
 
 document.addEventListener('dblclick', (event) => {
+    if (window.innerWidth < 700) return;
     const item = event.target.closest('.file-item');
     if (!item) return;
     openEntry(item.closest('.xp-window').dataset.windowId, item.dataset.entryName);
+});
+
+document.addEventListener('click', (event) => {
+    if (window.innerWidth >= 700) return;
+    const item = event.target.closest('.file-item');
+    if (!item) return;
+    const windowElement = item.closest('.xp-window');
+    const history = windowElement && explorerHistory.get(windowElement.dataset.windowId);
+    if (!history) return;
+    const node = getNode(history.path)?.[item.dataset.entryName];
+    if (!node) return;
+    if (!node.type && history.path.length === 1 && history.path[0] === 'Projects') {
+        const project = getProject(item.dataset.entryName);
+        if (project?.openMode !== 'explorer') openProject(item.dataset.entryName);
+        else openEntry(windowElement.dataset.windowId, item.dataset.entryName);
+    } else {
+        openEntry(windowElement.dataset.windowId, item.dataset.entryName);
+    }
 });
 
 document.addEventListener('contextmenu', (event) => {
