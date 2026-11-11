@@ -1238,41 +1238,18 @@ function closeMediaViewer() {
 // Update UI based on state
 function updateUI() {
     const wrapper = document.getElementById('categoriesWrapper');
-
-    const xmbContainer = document.getElementById('xmbContainer');
-    const selectedColumn = wrapper.querySelector(
-        `.category-column[data-category="${selectedCategory}"]`
-    );
-
-    if (selectedColumn) {
-        const containerRect = xmbContainer.getBoundingClientRect();
-        const selectedRect = selectedColumn.getBoundingClientRect();
-
-        const containerCenterX = containerRect.left + containerRect.width / 2;
-        const selectedCenterX = selectedRect.left + selectedRect.width / 2;
-
-        const currentTransform = getComputedStyle(wrapper).transform;
-        const currentX = currentTransform !== 'none'
-            ? new DOMMatrixReadOnly(currentTransform).m41
-            : 0;
-
-        const deltaX = containerCenterX - selectedCenterX;
-        wrapper.style.transform = `translateX(${currentX + deltaX}px)`;
-    }
+    wrapper.style.transform = 'none';
 
     // Update category styles
     document.querySelectorAll('.category-column').forEach((col, idx) => {
         const distance = Math.abs(idx - selectedCategory);
-        const scale = 1 - distance * 0.15;
-        const opacity = 1 - distance * 0.25;
-
-        col.style.transform = `scale(${scale})`;
-        col.style.opacity = opacity;
 
         const icon = col.querySelector('.category-icon');
         const title = col.querySelector('.category-title');
         const iconWrapper = col.querySelector('.category-icon-wrapper');
         iconWrapper.setAttribute('aria-pressed', String(distance === 0));
+        col.style.transform = 'none';
+        col.style.opacity = '1';
 
         if (distance === 0) {
             icon.classList.add('active');
@@ -1297,11 +1274,8 @@ function updateUI() {
             const isActiveCategory = idx === selectedCategory;
             const originalItemIdx = Number.parseInt(item.dataset.item.split('-')[1], 10);
             const itemDistance = Math.abs(originalItemIdx - selectedItem);
-            const itemScale = isActiveCategory ? 1 - itemDistance * 0.15 : 0.9;
-            const itemOpacity = isActiveCategory ? 1 - itemDistance * 0.4 : 0.3;
-
-            item.style.setProperty('--scale', itemScale);
-            item.style.opacity = itemOpacity;
+            item.style.setProperty('--scale', '1');
+            item.style.opacity = '1';
             item.setAttribute('aria-pressed', String(isActiveCategory && itemDistance === 0));
 
             if (isActiveCategory && itemDistance === 0) {
@@ -1370,6 +1344,12 @@ function selectCategory(idx) {
     selectedCategory = idx;
     selectedItem = 0;
     scheduleUIUpdate();
+    window.setTimeout(() => {
+        document.querySelector(`.category-column[data-category="${idx}"]`)?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
+    }, 0);
 }
 
 function selectItem(catIdx, itemIdx) {
@@ -1380,6 +1360,34 @@ function selectItem(catIdx, itemIdx) {
 
 // Event listeners
 function attachEventListeners() {
+    const taskbarClock = document.getElementById('taskbarClock');
+    const updateTaskbarClock = () => {
+        if (taskbarClock) {
+            taskbarClock.textContent = new Intl.DateTimeFormat([], {
+                hour: 'numeric',
+                minute: '2-digit'
+            }).format(new Date());
+        }
+    };
+
+    updateTaskbarClock();
+    window.setInterval(updateTaskbarClock, 30000);
+
+    document.querySelector('.start-button')?.addEventListener('click', () => {
+        document.getElementById('categoriesWrapper')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.querySelectorAll('.header-nav a[href^="#"]').forEach((link) => {
+        link.addEventListener('click', (event) => {
+            const target = document.querySelector(link.getAttribute('href'));
+            if (!target) return;
+
+            event.preventDefault();
+            history.replaceState(null, '', link.getAttribute('href'));
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
     document.querySelectorAll('[data-navigation]').forEach((control) => {
         control.addEventListener('click', () => {
             const navigation = control.dataset.navigation;
