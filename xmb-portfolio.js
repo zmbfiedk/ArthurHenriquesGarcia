@@ -200,42 +200,6 @@ const menuData = [
         ]
     },
     {
-        title: { en: 'CV', pt: 'CV', nl: 'CV' },
-        icon: 'code',
-        items: [
-            {
-                title: { en: 'Work Experience', pt: 'Experiencia Profissional', nl: 'Werkervaring' },
-                description: { en: 'Trainmore, Albert Heijn, Action, Van Haren', pt: 'Trainmore, Albert Heijn, Action, Van Haren', nl: 'Trainmore, Albert Heijn, Action, Van Haren' },
-                content: { en: 'Host at Trainmore + retail background with customer service.', pt: 'Host na Trainmore + experiencia em varejo e atendimento.', nl: 'Host bij Trainmore + retailervaring met klantenservice.' },
-                detailContent: {
-                    en: 'Host - Trainmore (2025-Present): machine checks, gym organization, memberships and day passes.\n\nRetail Associate - Albert Heijn (2019-2025): warehouse and customer service.\n\nRetail Associate - Action (2023-2024): warehouse and customer service.\n\nRetail Associate - Van Haren (2024): store organization and customer support.',
-                    pt: 'Host - Trainmore (2025-Atual): verificacao de maquinas, organizacao da academia, vendas de memberships e day passes.\n\nVarejo - Albert Heijn (2019-2025): estoque e atendimento ao cliente.\n\nVarejo - Action (2023-2024): estoque e atendimento ao cliente.\n\nVarejo - Van Haren (2024): organizacao de loja e suporte ao cliente.',
-                    nl: 'Host - Trainmore (2025-heden): machine checks, organisatie van de gym, memberships en day passes.\n\nRetail Associate - Albert Heijn (2019-2025): magazijn en klantenservice.\n\nRetail Associate - Action (2023-2024): magazijn en klantenservice.\n\nRetail Associate - Van Haren (2024): winkelorganisatie en klantondersteuning.'
-                }
-            },
-            {
-                title: { en: 'Education', pt: 'Educacao', nl: 'Opleiding' },
-                description: { en: 'MBO 4 Game Development + IB & VWO', pt: 'MBO 4 Game Development + IB & VWO', nl: 'MBO 4 Game Development + IB & VWO' },
-                content: { en: 'Media College Amsterdam (2024-2028), DENISE (2019-2024).', pt: 'Media College Amsterdam (2024-2028), DENISE (2019-2024).', nl: 'Media College Amsterdam (2024-2028), DENISE (2019-2024).' },
-                detailContent: {
-                    en: 'MBO 4 Game Development - Media College Amsterdam (2024-2028) with focus on gameplay and mechanics.\n\nInternational Baccalaureate (IB) & VWO - DENISE (2019-2024).',
-                    pt: 'MBO 4 Game Development - Media College Amsterdam (2024-2028) com foco em gameplay e mecanicas.\n\nInternational Baccalaureate (IB) & VWO - DENISE (2019-2024).',
-                    nl: 'MBO 4 Game Development - Media College Amsterdam (2024-2028) met focus op gameplay en mechanics.\n\nInternational Baccalaureate (IB) & VWO - DENISE (2019-2024).'
-                }
-            },
-            {
-                title: { en: 'Technical Skills', pt: 'Habilidades Tecnicas', nl: 'Technische Vaardigheden' },
-                description: { en: 'C#, C++, Python, Unity, Godot', pt: 'C#, C++, Python, Unity, Godot', nl: 'C#, C++, Python, Unity, Godot' },
-                content: { en: 'Hands-on experience in gameplay systems and scripting.', pt: 'Experiencia pratica em sistemas de gameplay e scripts.', nl: 'Praktische ervaring met gameplay-systemen en scripting.' },
-                detailContent: {
-                    en: 'C#: main scripting language in Unity projects.\nC++: small game development and core programming concepts.\nPython: scripting and workflow problem-solving.\nGodot: gameplay prototyping with GDScript.\nUnity: multiple shipped school and personal projects across genres.',
-                    pt: 'C#: linguagem principal de scripts em projetos Unity.\nC++: pequenos jogos e conceitos centrais de programacao.\nPython: scripts e resolucao de problemas de fluxo.\nGodot: prototipagem de gameplay com GDScript.\nUnity: varios projetos escolares e pessoais em diferentes generos.',
-                    nl: 'C#: belangrijkste scripttaal in Unity-projecten.\nC++: kleine game-projecten en kernconcepten van programmeren.\nPython: scripting en workflow-probleemoplossing.\nGodot: gameplay-prototyping met GDScript.\nUnity: meerdere school- en persoonlijke projecten in verschillende genres.'
-                }
-            }
-        ]
-    },
-    {
         title: { en: 'Contact', pt: 'Contato', nl: 'Contact' },
         icon: 'mail',
         items: [
@@ -291,8 +255,6 @@ menuData.sort((left, right) => {
 
 const aboutCategory = menuData.find((category) => category.title.en === 'About Me');
 const projectsCategory = menuData.find((category) => category.title.en === 'Projects');
-const cvCategoryIndex = menuData.findIndex((category) => category.title.en === 'CV');
-const cvCategory = cvCategoryIndex >= 0 ? menuData[cvCategoryIndex] : null;
 
 if (projectsCategory) {
     const completedProjects = new Set([
@@ -304,11 +266,6 @@ if (projectsCategory) {
         'Digital Divinity'
     ]);
     projectsCategory.items = projectsCategory.items.filter((item) => completedProjects.has(item.title.en));
-}
-
-if (aboutCategory && cvCategory) {
-    aboutCategory.items.push(...cvCategory.items);
-    menuData.splice(cvCategoryIndex, 1);
 }
 
 if (aboutCategory) {
