@@ -360,6 +360,41 @@ function updateProjectPreview(itemTitleEn) {
     projectDisc.alt = `${itemTitleEn} preview`;
 }
 
+function getProjectPreviewItems() {
+    const projectsCategory = menuData.find((category) => category.title.en === 'Projects');
+    return projectsCategory
+        ? projectsCategory.items
+            .map((item) => item.title.en)
+            .filter((title) => getProjectPreviewPath(title))
+        : [];
+}
+
+let hoveredProjectTitle = null;
+let projectPreviewIndex = 0;
+
+function setHoveredProject(itemTitleEn) {
+    hoveredProjectTitle = itemTitleEn;
+    updateProjectPreview(itemTitleEn);
+}
+
+function clearHoveredProject() {
+    hoveredProjectTitle = null;
+}
+
+function cycleProjectPreview() {
+    if (hoveredProjectTitle || document.getElementById('detailPage')?.classList.contains('visible')) return;
+
+    const projectTitles = getProjectPreviewItems();
+    if (projectTitles.length === 0) return;
+
+    projectPreviewIndex = (projectPreviewIndex + 1) % projectTitles.length;
+    updateProjectPreview(projectTitles[projectPreviewIndex]);
+}
+
+function startProjectPreviewCycle() {
+    window.setInterval(cycleProjectPreview, 3500);
+}
+
 function getProjectStatus(itemTitleEn) {
     return PROJECT_DETAIL_INFO[itemTitleEn]?.status || '';
 }
@@ -841,6 +876,51 @@ function getProjectDetailText(projectInfo) {
 
 function renderProjectCaseStudy(detailPageContent, caseStudy) {
     detailPageContent.classList.add('project-case-study');
+    const renderCodeCard = (snippet) => `
+        <article class="code-card">
+            <div class="code-card-header">
+                <strong>${snippet.title}</strong>
+                <span>${snippet.source}</span>
+                <button class="media-expand-button" type="button" data-viewer-type="code" aria-label="Open ${snippet.title} fullscreen" title="Open fullscreen">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M3 16v5h5"/></svg>
+                </button>
+            </div>
+            <p class="code-card-explanation">${snippet.explanation}</p>
+            <pre><code>${snippet.code}</code></pre>
+        </article>
+    `;
+    const renderDiagramCard = (diagram) => `
+        <figure class="diagram-card">
+            <div class="diagram-image-wrap">
+                <img src="${caseStudy.imagePath || 'Files/Tower of babel/Images'}/${diagram.file}" alt="${diagram.title}" loading="lazy">
+                <button class="media-expand-button" type="button" data-viewer-type="diagram" aria-label="Open ${diagram.title} fullscreen" title="Open fullscreen">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M3 16v5h5"/></svg>
+                </button>
+            </div>
+            <figcaption>
+                <strong>${diagram.title}</strong>
+                <span>${diagram.caption}</span>
+            </figcaption>
+        </figure>
+    `;
+    const storySections = caseStudy.sections.map((section, index) => `
+        <section class="case-study-section">
+            <div class="case-study-section-copy">
+                <h2>${section.title}</h2>
+                <p>${section.text}</p>
+            </div>
+            ${(caseStudy.codeSnippets[index] || caseStudy.diagrams[index]) ? `
+                <div class="case-study-section-media">
+                    ${caseStudy.codeSnippets[index] ? renderCodeCard(caseStudy.codeSnippets[index]) : ''}
+                    ${caseStudy.diagrams[index] ? renderDiagramCard(caseStudy.diagrams[index]) : ''}
+                </div>
+            ` : ''}
+        </section>
+    `).join('');
+    const remainingCode = caseStudy.codeSnippets.slice(caseStudy.sections.length);
+    const remainingDiagrams = caseStudy.diagrams.slice(caseStudy.sections.length);
+    const hasAdditionalMaterial = remainingCode.length > 0 || remainingDiagrams.length > 0;
+
     detailPageContent.innerHTML = `
         <div class="case-study-intro">
             <p>${caseStudy.intro}</p>
@@ -853,63 +933,22 @@ function renderProjectCaseStudy(detailPageContent, caseStudy) {
                 </div>
             `).join('')}
         </div>
-        <div class="case-study-sections">
-            ${caseStudy.sections.map((section) => `
-                <section class="case-study-section">
-                    <h2>${section.title}</h2>
-                    <p>${section.text}</p>
-                </section>
-            `).join('')}
-        </div>
-        <section class="code-section">
+        <article class="case-study-story">
+            ${storySections}
+        </article>
+        ${hasAdditionalMaterial ? `
+        <section class="additional-material">
             <div class="diagram-section-heading">
                 <div>
-                    <p class="eyebrow">Technical direction</p>
-                    <h2>Systems in code</h2>
+                    <p class="eyebrow">Supporting material</p>
+                    <h2>Additional project material</h2>
                 </div>
-                <span class="diagram-count">Representative ${caseStudy.codeSnippets[0].language} sketches</span>
+                <span class="diagram-count">${remainingCode.length + remainingDiagrams.length} items</span>
             </div>
-            <div class="code-grid">
-                ${caseStudy.codeSnippets.map((snippet) => `
-                    <article class="code-card">
-                        <div class="code-card-header">
-                            <strong>${snippet.title}</strong>
-                            <span>${snippet.source}</span>
-                            <button class="media-expand-button" type="button" data-viewer-type="code" aria-label="Open ${snippet.title} fullscreen" title="Open fullscreen">
-                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M3 16v5h5"/></svg>
-                            </button>
-                        </div>
-                        <p class="code-card-explanation">${snippet.explanation}</p>
-                        <pre><code>${snippet.code}</code></pre>
-                    </article>
-                `).join('')}
-            </div>
+            ${remainingCode.length ? `<div class="code-grid">${remainingCode.map(renderCodeCard).join('')}</div>` : ''}
+            ${remainingDiagrams.length ? `<div class="diagram-grid">${remainingDiagrams.map(renderDiagramCard).join('')}</div>` : ''}
         </section>
-        <section class="diagram-section">
-            <div class="diagram-section-heading">
-                <div>
-                    <p class="eyebrow">Design documentation</p>
-                    <h2>Systems at a glance</h2>
-                </div>
-                <span class="diagram-count">${caseStudy.diagrams.length} diagrams</span>
-            </div>
-            <div class="diagram-grid">
-                ${caseStudy.diagrams.map((diagram) => `
-                    <figure class="diagram-card">
-                        <div class="diagram-image-wrap">
-                            <img src="${caseStudy.imagePath || 'Files/Tower of babel/Images'}/${diagram.file}" alt="${diagram.title}" loading="lazy">
-                            <button class="media-expand-button" type="button" data-viewer-type="diagram" aria-label="Open ${diagram.title} fullscreen" title="Open fullscreen">
-                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M3 16v5h5"/></svg>
-                            </button>
-                        </div>
-                        <figcaption>
-                            <strong>${diagram.title}</strong>
-                            <span>${diagram.caption}</span>
-                        </figcaption>
-                    </figure>
-                `).join('')}
-            </div>
-        </section>
+        ` : ''}
     `;
 }
 
@@ -979,6 +1018,7 @@ function init() {
     renderCategories();
     updateTranslations();
     attachEventListeners();
+    startProjectPreviewCycle();
     scheduleUIUpdate();
 }
 
@@ -1078,7 +1118,7 @@ function renderCategories() {
             ` : `<div class="items-list ${isProjectsCategory(catIdx) ? 'projects-list' : ''}">
                 ${isProjectsCategory(catIdx) ? `<div class="projects-track">` : ''}
                 ${category.items.map((item, itemIdx) => `
-                    <button class="item-card" type="button" data-item="${catIdx}-${itemIdx}" onmouseenter="updateProjectPreview('${item.title.en.replaceAll("'", "\\'")}')" onclick="handleItemClick(${catIdx}, ${itemIdx})" aria-label="Open ${item.title[currentLanguage]}">
+                    <button class="item-card" type="button" data-item="${catIdx}-${itemIdx}" onmouseenter="setHoveredProject('${item.title.en.replaceAll("'", "\\'")}')" onmouseleave="clearHoveredProject()" onclick="handleItemClick(${catIdx}, ${itemIdx})" aria-label="Open ${item.title[currentLanguage]}">
                         <div class="item-row">
                             <span class="item-inline-icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24">${getItemIconFor(catIdx, item.title.en)}</svg>
