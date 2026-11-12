@@ -5,33 +5,13 @@ const menuData = [
         icon: 'user',
         items: [
             {
-                title: { en: 'Introduction', pt: 'Introducao', nl: 'Introductie' },
+                title: { en: 'About Me', pt: 'Sobre Mim', nl: 'Over Mij' },
                 description: { en: 'Gameplay / Tool Developer', pt: 'Desenvolvedor de Gameplay / Ferramentas', nl: 'Gameplay / Tool Developer' },
-                content: { en: 'Hi, I am Arthur from Rio, now based in Amsterdam.', pt: 'Ola, eu sou Arthur do Rio, agora em Amsterdam.', nl: 'Hoi, ik ben Arthur uit Rio, nu in Amsterdam.' },
+                content: { en: 'Gameplay and tool developer from Rio, now based in Amsterdam.', pt: 'Desenvolvedor de gameplay e ferramentas do Rio, agora em Amsterdam.', nl: 'Gameplay- en tooldeveloper uit Rio, nu gevestigd in Amsterdam.' },
                 detailContent: {
-                    en: 'Hi, I am Arthur. I was born in Rio de Janeiro, Brazil, and I have been living in the Netherlands for the past six years. Moving countries at a young age taught me how to adapt quickly, and along the way I learned Dutch and English. Because of this, I became a fast learner who feels comfortable picking up new skills and technologies.',
-                    pt: 'Oi, eu sou o Arthur. Nasci no Rio de Janeiro, Brasil, e moro na Holanda ha seis anos. Mudar de pais cedo me ensinou a me adaptar rapidamente, e nesse processo aprendi Holandes e Ingles. Por isso, me tornei alguem que aprende rapido e se adapta bem a novas tecnologias.',
-                    nl: 'Hoi, ik ben Arthur. Ik ben geboren in Rio de Janeiro, Brazilie, en woon al zes jaar in Nederland. Op jonge leeftijd verhuizen heeft mij geleerd om snel aan te passen. Onderweg heb ik Nederlands en Engels geleerd, waardoor ik snel nieuwe vaardigheden en technologieen oppak.'
-                }
-            },
-            {
-                title: { en: 'Education', pt: 'Educacao', nl: 'Opleiding' },
-                description: { en: 'IB + MBO Game Development', pt: 'IB + MBO Desenvolvimento de Jogos', nl: 'IB + MBO Game Development' },
-                content: { en: 'Practical game development focus at Media College Amsterdam.', pt: 'Foco pratico em desenvolvimento de jogos no Media College Amsterdam.', nl: 'Praktische focus op game development bij Media College Amsterdam.' },
-                detailContent: {
-                    en: 'Before fully committing to game development, I followed International Baccalaureate level education. That gave me a strong theoretical base, but I realized I thrive in practical, hands-on environments. I now study Game Development at Media College Amsterdam, where I work on design, mechanics, prototyping, iteration, and teamwork.',
-                    pt: 'Antes de focar totalmente em desenvolvimento de jogos, segui o nivel International Baccalaureate. Isso me deu uma base teorica forte, mas percebi que evoluo mais em ambientes praticos. Hoje estudo Game Development no Media College Amsterdam com foco em design, mecanicas, prototipos, iteracao e trabalho em equipe.',
-                    nl: 'Voordat ik volledig voor game development koos, volgde ik onderwijs op International Baccalaureate niveau. Dat gaf een sterke theoretische basis, maar ik merkte dat ik beter groei in praktische leeromgevingen. Nu studeer ik Game Development aan het Media College Amsterdam met focus op design, mechanics, prototypes, iteratie en teamwork.'
-                }
-            },
-            {
-                title: { en: 'Focus', pt: 'Foco', nl: 'Focus' },
-                description: { en: 'Roguelikes, systems, game feel', pt: 'Roguelikes, sistemas, game feel', nl: 'Roguelikes, systemen, game feel' },
-                content: { en: 'I enjoy turning ideas into interactive and fun mechanics.', pt: 'Gosto de transformar ideias em mecanicas interativas e divertidas.', nl: 'Ik vind het leuk om ideeen om te zetten in interactieve en leuke mechanics.' },
-                detailContent: {
-                    en: 'I especially enjoy gameplay mechanics and fast prototyping. My favorite genre is roguelikes because learning through failure and returning stronger is an inspiring design loop. Looking ahead, I want to keep improving in C# scripting, game feel, combat systems, player feedback, optimization, and tools development.',
-                    pt: 'Eu gosto especialmente de mecanicas de gameplay e prototipagem rapida. Meu genero favorito e roguelike por causa do ciclo de aprender com falhas e voltar mais forte. No futuro, quero melhorar em C#, game feel, sistemas de combate, feedback ao jogador, otimizacao e desenvolvimento de ferramentas.',
-                    nl: 'Ik werk het liefst aan gameplay mechanics en snelle prototyping. Mijn favoriete genre is roguelike, omdat leren door falen en sterker terugkomen een inspirerende ontwerpcyclus is. Ik wil mij verder ontwikkelen in C#, game feel, combatsystemen, player feedback, optimalisatie en tools development.'
+                    en: 'Hi, I am Arthur. I was born in Rio de Janeiro, Brazil, and I am now based in Amsterdam. Moving countries at a young age taught me to adapt quickly, and along the way I learned Dutch and English. I enjoy gameplay mechanics, systems design, and fast prototyping, especially the kind of iteration where a rough idea becomes a responsive and readable interaction.\n\nI followed International Baccalaureate level education before choosing a practical path in Game Development at Media College Amsterdam. I work across design, mechanics, prototyping, iteration, and teamwork, with a growing focus on C# scripting, game feel, combat systems, player feedback, optimization, and tools development. Roguelikes particularly interest me because their risk, failure, and progression loops make systems design visible to the player.',
+                    pt: 'Oi, eu sou o Arthur. Nasci no Rio de Janeiro, Brasil, e agora moro em Amsterdam. Mudar de pais cedo me ensinou a me adaptar rapidamente, e nesse processo aprendi Holandes e Ingles. Gosto de mecanicas de gameplay, design de sistemas e prototipagem rapida, especialmente da iteracao que transforma uma ideia inicial em uma interacao responsiva e legivel.\n\nEstudei no nivel International Baccalaureate antes de escolher um caminho pratico em Game Development no Media College Amsterdam. Trabalho com design, mecanicas, prototipos, iteracao e trabalho em equipe, com foco crescente em C#, game feel, sistemas de combate, feedback ao jogador, otimizacao e ferramentas. Gosto especialmente de roguelikes porque seus ciclos de risco, falha e progressao tornam o design de sistemas visivel para o jogador.',
+                    nl: 'Hoi, ik ben Arthur. Ik ben geboren in Rio de Janeiro, Brazilie, en woon nu in Amsterdam. Op jonge leeftijd verhuizen heeft mij geleerd om mij snel aan te passen. Onderweg heb ik Nederlands en Engels geleerd. Ik werk graag aan gameplaymechanics, systems design en snelle prototyping, vooral aan iteraties die een ruw idee veranderen in een responsieve en leesbare interactie.\n\nNa onderwijs op International Baccalaureate-niveau koos ik voor een praktische opleiding Game Development aan Media College Amsterdam. Ik werk aan design, mechanics, prototyping, iteratie en teamwork, met een groeiende focus op C# scripting, game feel, combatsystemen, player feedback, optimalisatie en tools development. Roguelikes spreken mij aan omdat hun cycli van risico, falen en progressie systems design zichtbaar maken voor de speler.'
                 }
             }
         ]
@@ -68,6 +48,16 @@ const menuData = [
                     en: 'This project explores wave systems, enemy scaling, and tactical placement. I worked on readability, balancing economy loops, and making decisions feel meaningful each round.',
                     pt: 'Este projeto explora sistemas de ondas, escala de inimigos e posicionamento tatico. Trabalhei em legibilidade, balanceamento da economia e decisoes significativas por rodada.',
                     nl: 'Dit project verkent wave-systemen, enemy scaling en tactische plaatsing. Ik werkte aan leesbaarheid, economische balans en betekenisvolle keuzes per ronde.'
+                }
+            },
+            {
+                title: { en: 'Gamejam Fighting Sticks', pt: 'Gamejam Fighting Sticks', nl: 'Gamejam Fighting Sticks' },
+                description: { en: 'Unity â€¢ C# â€¢ 2D fighting prototype', pt: 'Unity â€¢ C# â€¢ Protótipo de luta 2D', nl: 'Unity â€¢ C# â€¢ 2D fighting prototype' },
+                content: { en: 'A 2D fighting prototype focused on responsive movement, readable combat, and reactive enemy behavior.', pt: 'Um protótipo de luta 2D focado em movimento responsivo, combate legível e inimigos reativos.', nl: 'Een 2D-fightingprototype rond responsieve beweging, leesbare combat en reactief vijandgedrag.' },
+                detailContent: {
+                    en: 'A solo Unity prototype focused on building a compact, readable 2D fighting loop from input through movement, hit detection, blocking, and enemy decisions.',
+                    pt: 'Um protótipo solo em Unity focado em construir um loop de luta 2D compacto e legível, do input ao movimento, detecção de golpes, bloqueio e decisões inimigas.',
+                    nl: 'Een solo Unity-prototype rond een compacte, leesbare 2D-fightingloop van input tot beweging, hit detection, blokkeren en vijandbeslissingen.'
                 }
             },
             {
@@ -322,6 +312,7 @@ const PROJECT_DETAIL_INFO = {
             ],
             imagePath: 'Files/DoomLikeShooterC++/Images',
             diagrams: [
+                { file: '../Gif/DoomshooterGif.gif', type: 'gif', title: 'DoomLikeShooter gameplay', caption: 'A short gameplay capture of the raycasting shooter.' },
                 { file: '01-title-identity.png', title: 'Title identity', caption: 'The project identity for the raycasting shooter.' },
                 { file: '02-map-to-space.png', title: 'Map to space', caption: 'A grid map becomes navigable first-person space.' },
                 { file: '03-movement-collision.png', title: 'Movement and collision', caption: 'Circle-based collision keeps movement grounded in the map.' },
@@ -470,6 +461,8 @@ const PROJECT_DETAIL_INFO = {
             ],
             imagePath: 'Files/C++ small games',
             diagrams: [
+                { file: 'Pong/PongGif.gif', type: 'gif', title: 'Pong gameplay', caption: 'A short capture of the Pong prototype in motion.' },
+                { file: 'Shipgame/Gi.gif', type: 'gif', title: 'Shipgame gameplay', caption: 'A short capture of the Shipgame prototype in motion.' },
                 {
                     file: 'shipgame-terminal-sheet.png',
                     title: 'Shipgame terminal prototype',
@@ -480,6 +473,68 @@ const PROJECT_DETAIL_INFO = {
                     title: 'Pong systems sheet',
                     caption: 'The Pong-focused view of input, vector movement, paddle collision, scoring, reset behavior, and the real-time game loop.'
                 }
+            ]
+        }
+    },
+    'Gamejam Fighting Sticks': {
+        github: 'https://github.com/zmbfiedk/Fighting-sticks',
+        status: 'prototype',
+        imagePath: 'Files/Gamejam fighting sticks',
+        detailed: 'A solo Unity 2D fighting prototype focused on responsive movement, readable combat, and reactive enemy behavior.',
+        caseStudy: {
+            intro: 'A compact 2D fighting prototype built to make movement, hit timing, defense, and enemy reactions readable at gameplay speed.',
+            stats: [
+                { value: 'Unity', label: 'Engine' },
+                { value: 'C#', label: 'Language' },
+                { value: '6 days', label: 'Solo development' }
+            ],
+            sections: [
+                {
+                    title: 'Code architecture',
+                    text: 'PlayerPunch drives the Hitbox, the Hitbox reaches a Hurtbox, and the Hurtbox feeds shared Health. PlayerMovement owns the damage multiplier, while EnemyAI listens to player events and reuses the same Hitbox and Health flow. This keeps combat rules shared instead of duplicating player and enemy implementations.'
+                },
+                {
+                    title: 'Movement and double-tap dash',
+                    text: 'The new Input System reads the A/D axis and detects a repeated direction inside a tap window. That input starts a short horizontal velocity burst followed by a cooldown. The dash leaves Y velocity untouched, so gravity and airborne movement continue to behave naturally.'
+                },
+                {
+                    title: 'Ground check and custom gravity',
+                    text: 'A 2D raycast from the feet checks the ground layer and corrects the character pivot so the feet rest on the surface. Custom gravity uses a stronger fall multiplier and a terminal speed, giving jumps a sharper, more controllable descent without fighting Rigidbody2D simulation.'
+                },
+                {
+                    title: 'Punches and hit detection',
+                    text: 'A click starts the punch animation and opens a fist Hitbox during its active window. Body-part Hurtboxes share one Health component, while a Team enum filters valid targets. A per-swing hit set makes each character receive damage once, even when the hitbox stays overlapped for several physics frames.'
+                },
+                {
+                    title: 'Blocking and facing',
+                    text: 'Walking away from the opponent is treated as a defensive choice: movement slows, incoming damage is halved, and the block animation remains held while the condition is true. When the opponent crosses over, the character rotates 180 degrees on Y so attacks and defensive direction remain aligned with the fight.'
+                },
+                {
+                    title: 'Enemy AI: distance zones and states',
+                    text: 'The enemy uses distance zones to choose between approach, attack, retreat, and recovery. It chases when outside engagement range, commits to one-to-three-punch combos when close, backs off to block under pressure, and then recovers. The state flow gives the AI readable rhythm instead of constant attack spam.'
+                },
+                {
+                    title: 'Enemy AI: reactions and decisions',
+                    text: 'A randomized reaction delay prevents perfect responses while still letting the enemy read the player punch event. It can dash away from an attack, retreat after taking damage, reduce aggression at low health, and create more space against a blocking player. These decisions make the AI react to combat context rather than only distance.'
+                },
+                {
+                    title: 'Challenges and fixes',
+                    text: 'OnTriggerEnter2D caused multi-hit swings because an overlap could be reported again across an attack sequence, so hit confirmation moved to OnTriggerStay2D with a per-swing hit set. Sprite pivots did not match the character feet, so ground correction is based on a feet ray and pivot offset. Animator parameter lookups are guarded at startup so missing parameters fail visibly without breaking runtime input flow.'
+                },
+                {
+                    title: 'What I would improve',
+                    text: 'I would add buffered input and cancellable attack transitions, expose combat timing and AI tuning in dedicated data assets, and build automated playmode tests for hit ownership, blocking damage, dash cooldowns, and animation parameter validation. I would also replace the placeholder links with the final repository and playable build.'
+                }
+            ],
+            diagrams: [
+                { file: 'Gif/Sitckfighting gif.gif', type: 'gif', title: 'Fighting prototype gameplay', caption: 'A short gameplay capture showing the prototype in motion.' },
+                { file: 'Code architecture.png', title: 'Code architecture', caption: 'Player, enemy, hitbox, hurtbox, and health relationships.' },
+                { file: 'Movement and dash.png', title: 'Movement and dash', caption: 'Input timing and horizontal dash behavior.' },
+                { file: 'Ground check and gravity.png', title: 'Ground check and gravity', caption: 'Feet alignment and falling behavior.' },
+                { file: 'Punches and hit detection.png', title: 'Punches and hit detection', caption: 'Combat activation and one-hit-per-swing ownership.' },
+                { file: 'Blocking and facing.png', title: 'Blocking and facing', caption: 'Defensive movement and orientation rules.' },
+                { file: 'Enemy AI 1 zones.png', title: 'Enemy AI distance zones', caption: 'Distance-driven enemy states.' },
+                { file: 'Enemy AI 2 reactions.png', title: 'Enemy AI reactions', caption: 'Reaction timing and combat decisions.' }
             ]
         }
     },
@@ -676,6 +731,7 @@ const PROJECT_METADATA = {
     'Tower of Babel': { engine: 'unity', language: 'C#', year: '2026', role: 'Gameplay developer', tags: ['combat', 'waves', 'AI'], openMode: 'dual' },
     DoomLikeShooter: { engine: 'cpp', language: 'C++', tags: ['raycasting', 'SFML'], openMode: 'dual' },
     TowerDefense: { engine: 'unity', language: 'C#', tags: ['strategy', 'waves'], openMode: 'dual' },
+    'Gamejam Fighting Sticks': { engine: 'unity', language: 'C#', year: '2026', role: 'Solo developer', tags: ['2D combat', 'gameplay programming', 'enemy AI'], openMode: 'dual' },
     'Godot Game': { engine: 'godot', language: 'GDScript', tags: ['engine exploration'], openMode: 'dual' },
     'Small C++ Games': { engine: 'cpp', language: 'C++', tags: ['console', 'prototyping'], openMode: 'dual' },
     Fractured: { engine: 'unity', language: 'C#', tags: ['physics'], openMode: 'dual' },
@@ -726,9 +782,8 @@ const desktopIcons = [
 const fileSystem = {
     Projects: {},
     'About Me': {
-        'Introduction.txt': { type: 'text', content: () => menuData[1].items[0].detailContent.en },
-        'Education.txt': { type: 'text', content: () => menuData[1].items[1].detailContent.en },
-        'Focus.txt': { type: 'text', content: () => menuData[1].items[2].detailContent.en }
+        'About Me.txt': { type: 'text', content: () => getLocalized(aboutCategory.items[0].detailContent, currentLanguage) },
+        'Photo.jpg': { type: 'image', src: 'Files/Fotos/photo_woman_removed.jpg' }
     },
     Blog: {
         'README.txt': { type: 'text', content: 'Blog placeholder\\n\\nNo blog posts have been added yet.' }
@@ -750,7 +805,7 @@ Object.assign(fileSystem.Projects, Object.fromEntries(menuData[0].items.map((ite
     };
     const children = {
         'Case Study.html': { type: 'case-study', project: item.title.en },
-        'README.txt': { type: 'text', content: () => item.detailContent.en || item.content.en },
+        'README.txt': { type: 'text', content: () => getLocalized(item.detailContent || item.content, currentLanguage) },
         'Screenshot.png': {
             type: 'image',
             src: info.coverPath || (info.imagePath && info.diagrams?.[0] ? `${info.imagePath}/${info.diagrams[0].file}` : '')

@@ -51,6 +51,8 @@ document.querySelectorAll('[data-language]').forEach((button) => {
     button.addEventListener('click', () => {
         currentLanguage = button.dataset.language;
         document.querySelectorAll('[data-language]').forEach((item) => item.classList.toggle('active', item === button));
+        document.documentElement.lang = currentLanguage;
+        document.querySelectorAll('.explorer-window').forEach((windowElement) => renderExplorer(windowElement.dataset.windowId));
     });
 });
 
